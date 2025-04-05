@@ -1,0 +1,7 @@
+---
+title: "Lowells Resume"
+---
+
+Last Updated: 2025-04-05
+
+{{< pdf temp/t2.pdf >}}

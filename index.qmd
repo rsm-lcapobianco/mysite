@@ -1,0 +1,20 @@
+---
+title: "Lowell Capobianco"
+image: "images/lowell.jpg"
+
+about:
+  template: jolla
+
+  links: 
+    - icon: envelope
+      href: mailto:lcapobianco@usd.edu
+    - icon: linkedin
+      href: https://www.linkedin.com/in/lowell-capobianco/
+    - icon: github
+      href: https://github.com
+
+---
+
+This is a Quarto website.
+
+To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
