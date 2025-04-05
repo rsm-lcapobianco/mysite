@@ -1,0 +1,35 @@
+---
+title: HW 1
+author: Lowell Capobianco
+
+---
+
+# Question 1
+Prof says make a chart
+
+```{python}
+#|echo: false
+print('Hello World')
+
+
+import matplotlib.pyplot as plt
+import numpy as np
+x = np.linspace(0, 10, 100)
+y = np.sin(x)
+plt.plot(x, y)
+plt.title('Sine Wave')
+plt.xlabel('x')
+plt.ylabel('sin(x)')
+plt.grid()
+plt.savefig('sine_wave.png')
+plt.show()
+```
+
+```{python}
+import sys
+print("Python version:", sys.version)
+
+
+```{r}
+4+ 7
+```

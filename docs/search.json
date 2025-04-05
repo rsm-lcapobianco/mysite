@@ -7,10 +7,24 @@
     "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
   },
   {
+    "objectID": "projects/hw1/index.html",
+    "href": "projects/hw1/index.html",
+    "title": "HW 1",
+    "section": "",
+    "text": "Question 1\nProf says make a chart\n\n#|echo: false\nprint('Hello World')\n\nHello World\n\nimport matplotlib.pyplot as plt\n\nMatplotlib created a temporary cache directory at /tmp/matplotlib-zvpz9k6s because the default path (/home/jovyan/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.\n\nimport numpy as np\nx = np.linspace(0, 10, 100)\ny = np.sin(x)\nplt.plot(x, y)\nplt.title('Sine Wave')\nplt.xlabel('x')\nplt.ylabel('sin(x)')\nplt.grid()\nplt.savefig('sine_wave.png')\nplt.show()\n\n\n\n\n\n\n\n\n\nimport sys\nprint(\"Python version:\", sys.version)\n\nPython version: 3.12.7 | packaged by conda-forge | (main, Oct  4 2024, 15:56:51) [GCC 13.3.0]\n\n\n\n4+ 7\n\n[1] 11"
+  },
+  {
     "objectID": "Resume.html",
     "href": "Resume.html",
     "title": "Lowell Resume",
     "section": "",
     "text": "Last updated: 2025-04-05\nDownload PDF file."
+  },
+  {
+    "objectID": "projects.html",
+    "href": "projects.html",
+    "title": "My Homework",
+    "section": "",
+    "text": "Hw 2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHW 1\n\n\n\n\nLowell Capobianco\n\n\n\n\n\n\n\n\n\nNo matching items"
   }
 ]

@@ -10,6 +10,8 @@ website:
         text: Home
       - href: Resume.qmd
         text: Resume
+      - href: projects.qmd
+        text: homework
 
 format:
   html:
