@@ -1,7 +1,8 @@
 ---
-title: "Lowells Resume"
+title: Lowell Resume
+format: html
 ---
 
-Last Updated: 2025-04-05
+Last updated: 2025-04-05
 
-{{< pdf temp/t2.pdf >}}
+{{< pdf Content/LowellCapobiancoResume.pdf width=100% height=800 >}}
