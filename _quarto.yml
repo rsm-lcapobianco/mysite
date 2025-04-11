@@ -11,12 +11,16 @@ website:
       - href: Resume.qmd
         text: Resume
       - href: projects.qmd
-        text: homework
+        text: Homework
+      - text: Personnel Project
+        menu:
+        - href: Personnel/Reddit_Sentiment/Reddit_Scrape.ipynb
+          text: Sentiment Analsyis
 
 format:
   html:
     theme:
-      - cosmo
+      - Yeti
       - brand
     css: styles.css
     toc: true
