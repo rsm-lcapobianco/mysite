@@ -19,10 +19,11 @@ The experiment was one of the largest of its kind. Notably, it was conducted for
 
 ### Description
 
-- First we'll load the data from dta and conduct EDA inorder to better understand the datatypes and distrubtion of data.
-- We'll rename the columns we want to make a distribtuion plot of some key columns and verify the distribution and check for any outliers.
+- First we'll load the data from a dta file and conduct EDA inorder to better understand the datatypes and distrubtion of data.
+- We'll rename the columns we want to make a distribution plot of and check the distribution and check for any outliers.
 
 ```{python}
+# | echo: false
 import pandas as pd
 import pyrsm as rsm
 import numpy as np
@@ -41,7 +42,7 @@ warnings.filterwarnings('ignore')
 ```
 
 ```{python}
-
+# | echo: false
 #utllize Pandas and the Pyrsm package to create the distrubtion plots
 data = pd.read_stata('data/karlan_list_2007.dta')
 distr_plot_columns = ['treatment','gave','ask','hpa','ratio','median_hhincome','mrm2','dormant','female']
@@ -127,7 +128,7 @@ rsm.model.distr_plot(distr_data_plot)
 ### Balance Test 
 
 As an ad hoc test of the randomization mechanism, I provide a series of tests that compare aspects of the treatment and control groups to assess whether they are statistically significantly different from one another.
-Looking at table 1 in the resarches paper we see reserachers have provided summary statistics of several features in the data. This allows us to see that the control and treatment group are split evenly among those features. Showing the split allows us to perform useful statics techniques.
+Looking at table 1 in the paper we see the reserachers have provided summary statistics of several features in the data. This allows us to see that the control and treatment group are split evenly among those features. Showing the split allows us to perform useful statics techniques.
 
 To verify the success of random assignment, I compare pre-treatment characteristics between the treatment and control groups. Table 1 in the original study shows that the groups are similar across key variables, supporting the claim that any later differences are due to the treatment, not underlying differences.
 
@@ -138,10 +139,10 @@ I replicate this by testing variables like mrm2 (months since last donation), do
 `mrm2`, `dormant`,`female`
 :::
 
-- We'll conduct a t-test with a 95% confidence interval to ensure and check the months since lost donation variable with a linear regression 
+- We'll conduct a t-test with a 95% confidence interval to ensure and verify the months since last donation variable with a linear regression 
     1) Create a list of the variables we want to check 
     2) Create a function that we can use repedetly 
-    3) We'll use css and format the table for readability
+    3) We'll use css styling throughout our analysis for better readability
 
 
 ```{python}
@@ -181,6 +182,8 @@ def t_test(data, target):
     }])
     return display(res)
 t_test_results = {}
+```
+```{python}
 
 from IPython.display import display, HTML
 
@@ -193,13 +196,13 @@ for var in variables_to_test:
     </div>
     """
     display(HTML(html))
-    #
 ```
 
 ### Linear Regression Results
-Using a Linear regression we can verfy our results of the t-test
+Using a Linear regression we can verfy our results of the t-test for the `mrm2` variable
 
 ```{python}
+# | echo: false
 reg_data= data[['mrm2','treatment']].dropna()
 
 x = reg_data[['treatment']]
@@ -207,8 +210,10 @@ y= reg_data['mrm2']
 
 model= LinearRegression()
 model.fit(x,y)
+```
 
-
+```{python}
+# | echo: false
 reg_df = pd.DataFrame({
     "Coefficient": ["Intercept", "Treatment Coefficient"],
     "Estimate": [round(model.intercept_, 4), round(model.coef_[0], 4)]
@@ -224,19 +229,20 @@ display(reg_df)
 
 ### Charitable Contribution Made
 
-First, I analyze whether matched donations lead to an increased response rate of making a donation. 
+I analyze whether matched donations lead to an increased response rate of making a donation. 
 
-To evaluate whether matching donations increase the likelihood that someone donates, I begin by comparing the share of donors between the treatment and control groups. A simple barplot shows a higher proportion of donations among individuals who received a match offer. This visual evidence suggests that the match has an encouraging effect on giving behavior.
+To evaluate whether matching donations increase the likelihood that someone donates, I begin by comparing the share of donors between the treatment and control groups. A  barplot shows a higher proportion of donations among individuals who received a match offer. This visual evidence suggests that the match has an encouraging effect on giving behavior.
 
 To statistically test this difference, I run both a t-test and a simple linear regression using the binary outcome variable gave. Both methods show a small but statistically significant increase in donation likelihood for the treatment group—confirming the results reported in Table 2A, Panel A of the original paper. This indicates that simply announcing a matching offer increases the probability that someone donates, even if the amount of the match (e.g., 1:1 or 3:1) does not change that decision.
 
-I also fit a probit regression, which models the probability of donating using a nonlinear specification. While the coefficient is significant and consistent in sign with the linear model, the results do not numerically replicate Table 3 from the paper—likely due to rounding differences, omitted covariates, or reporting inconsistencies noted by the authors themselves. Nonetheless, the directional effect is clear: offering a match increases participation in giving.
+I also fit a probit regression, which models the probability of donating. While the coefficient is significant and consistent in sign with the linear model, the results do not numerically replicate Table 3 from the paper—likely due to rounding differences, omitted covariates, or reporting inconsistencies noted by the authors themselves. Nonetheless, the directional effect is clear: offering a match increases participation in giving.
 
 These results reinforce a key behavioral insight: people are more likely to act charitably when they feel their gift is amplified, even if the actual match size doesn’t substantially change the outcome.
 
 ::: {.callout-tip appearance="simple" icon=false  title="Percentage of Donators by Treatment Group"}
 :::
 ```{python}
+# | echo: false
 ct = pd.crosstab(data['treatment'],data['gave'],normalize='index')
 ct.index = ['Control', 'Treatment']
 ct.columns = ['Did Not Give', 'Gave']
@@ -276,6 +282,9 @@ probit_df = pd.DataFrame({
     "p-Value": probit_model.pvalues.round(5).values
 })
 
+```
+```{python}
+# | echo: false
 probit_df["Variable"] = probit_df["Variable"].replace({'const': 'Intercept'})
 html_table = probit_df.to_html(index=False, classes='table table-sm table-striped', border=0)
 
@@ -382,7 +391,9 @@ table = pd.DataFrame({
 })
 
 table['Variable'] = table['Variable'].replace({'const': 'Intercept'})
-
+```
+```{python}
+# | echo: false
 # Convert to HTML with styling
 html_table = table.to_html(index=False, classes='table table-sm table-striped', border=0)
 
@@ -411,8 +422,6 @@ Taken together, these results suggest that raising the match ratio does not mean
 
 
 ```{python}
-import pandas as pd
-from IPython.display import HTML
 
 # Filter for treatment group
 matched = data[data['treatment'] == 1]
@@ -436,7 +445,9 @@ coef_3_1 = model.params['C(ratio)[T.3]']
 # Difference between model coefficients
 diff_model_2_1_vs_1_1 = coef_2_1
 diff_model_3_1_vs_2_1 = coef_3_1 - coef_2_1
-
+```
+```{python}
+# | echo: false
 # Format into HTML card
 card = f"""
 <div class='response-card'>
@@ -503,7 +514,9 @@ ols_df = pd.DataFrame({
 
 ols_df["Variable"] = ols_df["Variable"].replace({'const': 'Intercept'})
 html_table = ols_df.to_html(index=False, classes='table table-sm table-striped', border=0)
-
+```
+```{python}
+# | echo: false
 # Styled HTML card
 card = f"""
 <div style='border: 1px solid #ccc; padding: 15px; border-radius: 10px; background-color: #f9f9f9; margin: 20px 0;'>
@@ -522,7 +535,6 @@ The below graph illustrates visually that were was not a staistically signifcant
 :::
 
 ```{python}
-import matplotlib.pyplot as plt
 
 # Filter to people who donated
 donors = data[data['amount'] > 0]
@@ -532,7 +544,9 @@ treatment_donors = donors[donors['treatment'] == 1]
 # Calculate means
 control_mean = control_donors['amount'].mean()
 treatment_mean = treatment_donors['amount'].mean()
-
+```
+```{python}
+# | echo: false
 # Plot side-by-side histograms
 plt.figure(figsize=(12, 5))
 
@@ -579,7 +593,9 @@ std_no_char = (mu_no_char* (1-mu_no_char))**.5
 p = .022
 mu_char = p
 std_char =  (mu_char * (1-mu_char))**.5
-
+```
+```{python}
+# | echo: false
 print(f'The mean and standard deviation for the respondents who did not receive a donation match is {mu_no_char,round(std_no_char,2)}')
 
 print(f'The mean and standard deviation for the respondents who did receive a donation match is {mu_char,round(std_char,2)}')
@@ -596,6 +612,11 @@ no_match_draws = np.random.binomial(1, p_no, size=n)
 match_draws = np.random.binomial(1, p, size=n)
 differences = match_draws - no_match_draws
 cumulative_avg = np.cumsum(differences) / np.arange(1, 10001)
+
+```
+
+```{python}
+# | echo: false
 import matplotlib.pyplot as plt
 
 plt.figure(figsize=(8, 4))
