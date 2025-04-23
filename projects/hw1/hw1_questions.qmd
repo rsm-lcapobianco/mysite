@@ -229,11 +229,11 @@ display(reg_df)
 
 ### Charitable Contribution Made
 
-I analyze whether matched donations lead to an increased response rate of making a donation. 
+I analyzed whether matched donations led to an increased response rate of making a donation. 
 
 To evaluate whether matching donations increase the likelihood that someone donates, I begin by comparing the share of donors between the treatment and control groups. A  barplot shows a higher proportion of donations among individuals who received a match offer. This visual evidence suggests that the match has an encouraging effect on giving behavior.
 
-To statistically test this difference, I run both a t-test and a simple linear regression using the binary outcome variable gave. Both methods show a small but statistically significant increase in donation likelihood for the treatment group—confirming the results reported in Table 2A, Panel A of the original paper. This indicates that simply announcing a matching offer increases the probability that someone donates, even if the amount of the match (e.g., 1:1 or 3:1) does not change that decision.
+To statistically test this difference, I run both a t-test and a simple linear regression using the binary outcome variable `gave`. Both methods show a small but statistically significant increase in donation likelihood for the treatment group—confirming the results reported in Table 2A, Panel A of the original paper. This indicates that simply announcing a matching offer increases the probability that someone donates, even if the amount of the match (e.g., 1:1 or 3:1) does not change that decision.
 
 I also fit a probit regression, which models the probability of donating. While the coefficient is significant and consistent in sign with the linear model, the results do not numerically replicate Table 3 from the paper—likely due to rounding differences, omitted covariates, or reporting inconsistencies noted by the authors themselves. Nonetheless, the directional effect is clear: offering a match increases participation in giving.
 
