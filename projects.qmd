@@ -2,7 +2,7 @@
 title: "My Homework"
 listing:
     contents: projects
-    type: grid
+    type: default
     sort: 'date desc'
     categories: False
 
