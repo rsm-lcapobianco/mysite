@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Lowell Capobianco">
-<meta name="dcterms.date" content="2025-05-04">
+<meta name="dcterms.date" content="2025-05-05">
 
 <title>Poisson Regression Examples – Lowell Capobianco</title>
 <style>
@@ -233,7 +233,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 4, 2025</p>
+      <p class="date">May 5, 2025</p>
     </div>
   </div>
   
@@ -254,8 +254,6 @@ window.Quarto = {
 </section>
 <section id="data" class="level3">
 <h3 class="anchored" data-anchor-id="data">Data</h3>
-<p><em>todo: Read in data.</em></p>
-<p><em>todo: Compare histograms and means of number of patents by customer status. What do you observe?</em></p>
 <div class="callout callout-style-simple callout-tip no-icon callout-titled" title="EDA">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -269,7 +267,7 @@ EDA
 
 </div>
 </div>
-<div id="8f572355" class="cell" data-execution_count="2">
+<div id="4d80cf2c" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>blueprint_hist <span class="op">=</span> pd.pivot_table(blueprinty, index<span class="op">=</span><span class="st">'iscustomer'</span>, values<span class="op">=</span><span class="st">'patents'</span>, aggfunc<span class="op">=</span><span class="st">'mean'</span>).head()</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>display(blueprint_hist)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -304,7 +302,7 @@ EDA
 </div>
 </div>
 </div>
-<div id="8ae8b860" class="cell" data-execution_count="3">
+<div id="887b1f9f" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -313,9 +311,9 @@ EDA
 </div>
 </div>
 </div>
-<p>On average if a someone is a customer they have slightly more patents then a noncustomer</p>
+<p>On average if a firm is a customer they have slightly more patents then a noncustomer</p>
 <p>Blueprinty customers are not selected at random. It may be important to account for systematic differences in the age and regional location of customers vs non-customers.</p>
-<div id="b0e3c21c" class="cell" data-execution_count="4">
+<div id="ff4a878d" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>blueprinty[<span class="st">'age_bins'</span>]<span class="op">=</span> pd.cut(blueprinty[<span class="st">'age'</span>], bins<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>], right<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>blueprint_hist_age <span class="op">=</span>pd.crosstab(index<span class="op">=</span>blueprinty[<span class="st">'age_bins'</span>], columns<span class="op">=</span>blueprinty[<span class="st">'iscustomer'</span>],margins<span class="op">=</span><span class="va">True</span>,margins_name<span class="op">=</span><span class="st">'Total'</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>display(blueprint_hist_age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -375,7 +373,7 @@ EDA
 </div>
 </div>
 </div>
-<div id="c234d54e" class="cell" data-execution_count="5">
+<div id="9f7e7ecd" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -384,7 +382,7 @@ EDA
 </div>
 </div>
 </div>
-<div id="779af842" class="cell" data-execution_count="6">
+<div id="e7aeb976" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>blueprint_hist_region<span class="op">=</span> pd.crosstab(index<span class="op">=</span>blueprinty[<span class="st">'region'</span>], columns<span class="op">=</span>blueprinty[<span class="st">'iscustomer'</span>],margins<span class="op">=</span><span class="va">True</span>,margins_name<span class="op">=</span><span class="st">'Total'</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>display(blueprint_hist_region)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -449,7 +447,7 @@ EDA
 </div>
 </div>
 </div>
-<div id="09263910" class="cell" data-execution_count="7">
+<div id="1ac8b910" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -458,13 +456,11 @@ EDA
 </div>
 </div>
 </div>
-<p><em>todo: Compare regions and ages by customer status. What do you observe?</em></p>
-<p>Most Customers are in the 20-30 age group aand are from the Norht East region</p>
+<p>Most Firms are in the 20 - 30 age range. Additoinaly there is a disporpoiante amount of customers who are in the the North East region. We may see a higher coeffcient weight on these 2 characteristcs due to them being overrepresented in the data.</p>
 </section>
 <section id="estimation-of-simple-poisson-model" class="level3">
 <h3 class="anchored" data-anchor-id="estimation-of-simple-poisson-model">Estimation of Simple Poisson Model</h3>
 <p>Since our outcome variable of interest can only be small integer values per a set unit of time, we can use a Poisson density to model the number of patents awarded to each engineering firm over the last 5 years. We start by estimating a simple Poisson model via Maximum Likelihood.</p>
-<p><em>todo: Write down mathematically the likelihood for</em> <span class="math inline">\(Y \sim \text{Poisson}(\lambda)\)</span>. Note that <span class="math inline">\(f(Y|\lambda) = e^{-\lambda}\lambda^Y/Y!\)</span>.</p>
 <div class="callout callout-style-simple callout-tip no-icon callout-titled" title="Log Likehood for Poission">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -512,8 +508,7 @@ Log likelihood in code
 
 </div>
 </div>
-<p><em>todo: Code the likelihood (or log-likelihood) function for the Poisson model. This is a function of lambda and Y. For example:</em></p>
-<div id="b2d82d10" class="cell" data-execution_count="8">
+<div id="9177b451" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> factorial</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -529,12 +524,13 @@ Log likelihood in code
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    y_array <span class="op">=</span> np.array(y_array)</span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.<span class="bu">sum</span>(<span class="op">-</span>lmbda <span class="op">+</span> y_array <span class="op">*</span> np.log(lmbda) <span class="op">-</span> gammaln(y_array <span class="op">+</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="6371682d" class="cell" data-execution_count="9">
+<p>We changed from the factorial to the gammln function in the log likelihood function. When using factrioal numbers get extremely large and could cause overflow errors. Gammaln works like an integral of the factorial function which will make the math less computatiaonlly expensivve</p>
+<div id="2bc93654" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Evaluate log-likelihoods across lambda values</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>lambda_vals <span class="op">=</span> np.arange(<span class="dv">1</span>, <span class="dv">20</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>log_likelihoods <span class="op">=</span> [poisson_log_likelihood(lmbda, blueprinty[<span class="st">'patents'</span>].values) <span class="cf">for</span> lmbda <span class="kw">in</span> lambda_vals]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="bb987471" class="cell" data-execution_count="10">
+<div id="c09dde84" class="cell" data-execution_count="10">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -543,12 +539,6 @@ Log likelihood in code
 </div>
 </div>
 </div>
-<pre><code>poisson_loglikelihood &lt;- function(lambda, Y){
-   ...
-}</code></pre>
-<p><em>todo: Use your function to plot lambda on the horizontal axis and the likelihood (or log-likelihood) on the vertical axis for a range of lambdas (use the observed number of patents as the input for Y).</em></p>
-<p><em>todo: If you’re feeling mathematical, take the first derivative of your likelihood or log-likelihood, set it equal to zero and solve for lambda. You will find lambda_mle is Ybar, which “feels right” because the mean of a Poisson distribution is lambda.</em></p>
-<p>todo: Find the MLE by optimizing your likelihood function with optim() in R or sp.optimize() in Python.__</p>
 <hr>
 </section>
 <section id="step-1-log-likelihood-function" class="level4">
@@ -563,49 +553,48 @@ Log likelihood in code
 \]</span></p>
 <hr>
 </section>
-<section id="step-2-take-the-derivative-w.r.t." class="level4">
-<h4 class="anchored" data-anchor-id="step-2-take-the-derivative-w.r.t.">Step 2: Take the Derivative w.r.t. ( )</h4>
+<section id="step-2-take-the-derivative-w.r.t.-lambda" class="level4">
+<h4 class="anchored" data-anchor-id="step-2-take-the-derivative-w.r.t.-lambda">Step 2: Take the Derivative w.r.t. <span class="math inline">\(( \lambda )\)</span></h4>
 <p>To find the MLE, take the derivative and set it equal to zero:</p>
 <p><span class="math display">\[
 \frac{d}{d\lambda} \ell(\lambda) = -n + \frac{\sum y_i}{\lambda}
 \]</span></p>
 <p>Set the derivative to zero:</p>
 <p><span class="math display">\[
--n + \frac{\sum y_i}{\lambda} = 0
+-n + \frac{\sum y_i}${\lambda} = 0
 \]</span></p>
 <hr>
 </section>
-<section id="step-3-solve-for" class="level4">
-<h4 class="anchored" data-anchor-id="step-3-solve-for">Step 3: Solve for $ ()$</h4>
+<section id="step-3-solve" class="level4">
+<h4 class="anchored" data-anchor-id="step-3-solve">Step 3: Solve</h4>
 <p><span class="math display">\[
 \frac{\sum y_i}{\lambda} = n
 \quad \Rightarrow \quad
 \lambda = \frac{1}{n} \sum y_i
 = \bar{y}
 \]</span></p>
-<p>So the <strong>MLE</strong> for ( ) in a Poisson distribution is the <strong>sample mean</strong>:</p>
+<p>So the <strong>MLE</strong> for <span class="math inline">\(( \lambda )\)</span> in a Poisson distribution is the <strong>sample mean</strong>:</p>
 <p><span class="math display">\[
 \hat{\lambda}_{\text{MLE}} = \bar{y}
 \]</span></p>
-<div id="19817bf9" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#from scipy.optimize import minimize_scalar</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> minimize_scalar</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> gammaln</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ecause scipy.optimize minimizes by default, we minimize the negative log-likelihood</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Trick the minimze function into findind the maximum log likelhood with a negative</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>   <span class="co">#lambda lmbda --&gt; Keep calling the function with lambda as the lmbda value</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>objective <span class="op">=</span> <span class="kw">lambda</span> lmbda: <span class="op">-</span>poisson_log_likelihood(lmbda, blueprinty[<span class="st">'patents'</span>].values)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform the optimization using bounded scalar minimization</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> minimize_scalar(objective, bounds<span class="op">=</span>(<span class="fl">0.01</span>, <span class="dv">20</span>), method<span class="op">=</span><span class="st">'bounded'</span>)</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Output the MLE estimate for lambda</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>lambda_mle <span class="op">=</span> result.x</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>log_likelihood_at_mle <span class="op">=</span> <span class="op">-</span>result.fun</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="239309a1" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> minimize_scalar</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> gammaln</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ecause scipy.optimize minimizes by default, we minimize the negative log-likelihood</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Trick the minimze function into finding the maximum log likelhood with a negative</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>   <span class="co">#lambda lmbda --&gt; Keep calling the function with lambda as the lmbda value</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>objective <span class="op">=</span> <span class="kw">lambda</span> lmbda: <span class="op">-</span>poisson_log_likelihood(lmbda, blueprinty[<span class="st">'patents'</span>].values)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform the optimization using bounded scalar minimization</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> minimize_scalar(objective, bounds<span class="op">=</span>(<span class="fl">0.01</span>, <span class="dv">20</span>), method<span class="op">=</span><span class="st">'bounded'</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Output the MLE estimate for lambda</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>lambda_mle <span class="op">=</span> result.x</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>log_likelihood_at_mle <span class="op">=</span> <span class="op">-</span>result.fun</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="1990f2fe" class="cell" data-execution_count="12">
-<div class="cell-output cell-output-display" data-execution_count="234">
+<div id="0a7ccc66" class="cell" data-execution_count="12">
+<div class="cell-output cell-output-display" data-execution_count="147">
 
 <div class="result-box">
   <p><strong> MLE for λ:</strong> 3.6847</p>
@@ -619,131 +608,136 @@ Log likelihood in code
 <section id="estimation-of-poisson-regression-model" class="level3">
 <h3 class="anchored" data-anchor-id="estimation-of-poisson-regression-model">Estimation of Poisson Regression Model</h3>
 <p>Next, we extend our simple Poisson model to a Poisson Regression Model such that <span class="math inline">\(Y_i = \text{Poisson}(\lambda_i)\)</span> where <span class="math inline">\(\lambda_i = \exp(X_i'\beta)\)</span>. The interpretation is that the success rate of patent awards is not constant across all firms (<span class="math inline">\(\lambda\)</span>) but rather is a function of firm characteristics <span class="math inline">\(X_i\)</span>. Specifically, we will use the covariates age, age squared, region, and whether the firm is a customer of Blueprinty.</p>
-<p>We assume the Poisson rate parameter ( _i ) varies by observation based on covariates ( X_i ) and a parameter vector ( ):</p>
+<p>We assume the Poisson rate parameter <span class="math inline">\(( \lambda )\)</span> varies by observation based on covariates <span class="math inline">\(( X_i )\)</span> and a parameter vector <span class="math inline">\(( \beta )\)</span>:</p>
 <p><span class="math display">\[
 \lambda_i = \exp(X_i^\top \beta)
 \]</span></p>
-<p>This ensures ( _i &gt; 0 ) for all ( i ), as required for Poisson distributions. The exponential function is the canonical inverse link function for Poisson regression.</p>
+<p>This ensures <span class="math inline">\(( \lambda_i &gt; 0 )\)</span> for all <span class="math inline">\(( i )\)</span>, as required for Poisson distributions. The exponential function is the canonical inverse link function for Poisson regression.</p>
 <hr>
 </section>
 <section id="log-likelihood-function-for-poisson-regression" class="level3">
 <h3 class="anchored" data-anchor-id="log-likelihood-function-for-poisson-regression">Log-Likelihood Function for Poisson Regression</h3>
-<p>Given the model ( Y_i (_i) ), the log-likelihood function across all observations is:</p>
+<p>Given the model <span class="math inline">\(( Y_i \sim \text{Poisson}(\lambda_i) )\)</span>, the log-likelihood function across all observations is:</p>
 <p><span class="math display">\[
 \ell(\beta) = \sum_{i=1}^n \left[ -\exp(X_i^\top \beta) + y_i (X_i^\top \beta) - \log(y_i!) \right]
 \]</span></p>
-<p>This is the function we will maximize to estimate ( ) using maximum likelihood estimation.</p>
-<p><em>todo: Update your likelihood or log-likelihood function with an additional argument to take in a covariate matrix X. Also change the parameter of the model from lambda to the beta vector. In this model, lambda must be a positive number, so we choose the inverse link function g_inv() to be exp() so that</em> <span class="math inline">\(\lambda_i = e^{X_i'\beta}\)</span>. <em>For example:</em></p>
-<pre><code>poisson_regression_likelihood &lt;- function(beta, Y, X){
-   ...
-}</code></pre>
-<div id="fa6f3de0" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> poisson_log_likelihood_regression(beta, X, y):</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Ensure all inputs are NumPy arrays</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(beta, np.ndarray):</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>        beta <span class="op">=</span> np.asarray(beta)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(X, np.ndarray):</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        X <span class="op">=</span> np.asarray(X)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(y, np.ndarray):</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> np.asarray(y)</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    eta <span class="op">=</span> X <span class="op">@</span> beta</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    lambda_ <span class="op">=</span> np.exp(eta)</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.<span class="bu">sum</span>(<span class="op">-</span>lambda_ <span class="op">+</span> y <span class="op">*</span> eta <span class="op">-</span> gammaln(y <span class="op">+</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This is the function we will maximize to estimate <span class="math inline">\(( \beta )\)</span> using maximum likelihood estimation.</p>
+<div id="553c494a" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> poisson_log_likelihood_regression(beta, X, y):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Ensure all inputs are NumPy arrays</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(beta, np.ndarray):</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        beta <span class="op">=</span> np.asarray(beta)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(X, np.ndarray):</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        X <span class="op">=</span> np.asarray(X)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(y, np.ndarray):</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> np.asarray(y)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    eta <span class="op">=</span> X <span class="op">@</span> beta</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    lambda_ <span class="op">=</span> np.exp(eta)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.<span class="bu">sum</span>(<span class="op">-</span>lambda_ <span class="op">+</span> y <span class="op">*</span> eta <span class="op">-</span> gammaln(y <span class="op">+</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><em>todo: Use your function along with R’s optim() or Python’s sp.optimize() to find the MLE vector and the Hessian of the Poisson model with covariates. Specifically, the first column of X should be all 1’s to enable a constant term in the model, and the subsequent columns should be age, age squared, binary variables for all but one of the regions, and the binary customer variable. Use the Hessian to find standard errors of the beta parameter estimates and present a table of coefficients and standard errors.</em></p>
-<div id="2d848a56" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> minimize</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>blueprinty[<span class="st">'age_squared'</span>] <span class="op">=</span> blueprinty[<span class="st">'age'</span>] <span class="op">**</span> <span class="dv">2</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>blueprinty[<span class="st">'age_scaled'</span>] <span class="op">=</span> (blueprinty[<span class="st">'age'</span>] <span class="op">-</span> blueprinty[<span class="st">'age'</span>].mean()) <span class="op">/</span> blueprinty[<span class="st">'age'</span>].std()</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>blueprinty[<span class="st">'age_squared'</span>] <span class="op">=</span> blueprinty[<span class="st">'age_scaled'</span>] <span class="op">**</span> <span class="dv">2</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>blueprinty[<span class="st">'intercept'</span>] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>encoded_region <span class="op">=</span> pd.get_dummies(blueprinty[<span class="st">'region'</span>], prefix<span class="op">=</span><span class="st">'region'</span>, drop_first<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>blueprinty <span class="op">=</span> pd.concat([blueprinty, encoded_region], axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> blueprinty[[<span class="st">'intercept'</span>, <span class="st">'age_scaled'</span>, <span class="st">'age_squared'</span>, <span class="st">'region_Northeast'</span>, <span class="st">'region_Northwest'</span>,</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>       <span class="st">'region_South'</span>, <span class="st">'region_Southwest'</span>, <span class="st">'iscustomer'</span>]].astype(<span class="bu">float</span>).to_numpy()</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> blueprinty[<span class="st">'patents'</span>].values</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>initial_beta <span class="op">=</span> np.zeros(X.shape[<span class="dv">1</span>])</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> minimize(</span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    fun<span class="op">=</span><span class="kw">lambda</span> b: <span class="op">-</span>poisson_log_likelihood_regression(b, X, y),</span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    x0<span class="op">=</span>initial_beta,</span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    method<span class="op">=</span><span class="st">'BFGS'</span></span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>beta_mle <span class="op">=</span> result.x</span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>log_lik_at_mle <span class="op">=</span> <span class="op">-</span>result.fun</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="32b5c3ac" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> minimize</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>blueprinty[<span class="st">'age_scaled'</span>] <span class="op">=</span> (blueprinty[<span class="st">'age'</span>] <span class="op">-</span> blueprinty[<span class="st">'age'</span>].mean()) <span class="op">/</span> blueprinty[<span class="st">'age'</span>].std()</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>blueprinty[<span class="st">'age_squared'</span>] <span class="op">=</span> blueprinty[<span class="st">'age_scaled'</span>] <span class="op">**</span> <span class="dv">2</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>blueprinty[<span class="st">'intercept'</span>] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>encoded_region <span class="op">=</span> pd.get_dummies(blueprinty[<span class="st">'region'</span>], prefix<span class="op">=</span><span class="st">'region'</span>, drop_first<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>blueprinty <span class="op">=</span> pd.concat([blueprinty, encoded_region], axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> blueprinty[[<span class="st">'intercept'</span>, <span class="st">'age_scaled'</span>, <span class="st">'age_squared'</span>, <span class="st">'region_Northeast'</span>, <span class="st">'region_Northwest'</span>,</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>       <span class="st">'region_South'</span>, <span class="st">'region_Southwest'</span>, <span class="st">'iscustomer'</span>]].astype(<span class="bu">float</span>).to_numpy()</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> blueprinty[<span class="st">'patents'</span>].values</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>initial_beta <span class="op">=</span> np.zeros(X.shape[<span class="dv">1</span>])</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> minimize(</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    fun<span class="op">=</span><span class="kw">lambda</span> b: <span class="op">-</span>poisson_log_likelihood_regression(b, X, y),</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    x0<span class="op">=</span>initial_beta,</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    method<span class="op">=</span><span class="st">'BFGS'</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>beta_mle <span class="op">=</span> result.x</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>log_lik_at_mle <span class="op">=</span> <span class="op">-</span>result.fun</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>hessian_inv <span class="op">=</span> result.hess_inv</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>standard_errors <span class="op">=</span> np.sqrt(np.diag(hessian_inv))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="2226ce03" class="cell" data-execution_count="15">
+<div id="bbbcf1ea" class="cell" data-execution_count="15">
 <div class="cell-output cell-output-display">
 <table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">Variable</th>
 <th data-quarto-table-cell-role="th">Estimate (MLE)</th>
+<th data-quarto-table-cell-role="th">Std. Error</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>intercept</td>
 <td>1.3447</td>
+<td>0.0366</td>
 </tr>
 <tr class="even">
 <td>age_scaled</td>
 <td>-0.0577</td>
+<td>0.0151</td>
 </tr>
 <tr class="odd">
 <td>age_squared</td>
 <td>-0.1558</td>
+<td>0.0131</td>
 </tr>
 <tr class="even">
 <td>region_Northeast</td>
 <td>0.0292</td>
+<td>0.0456</td>
 </tr>
 <tr class="odd">
 <td>region_Northwest</td>
 <td>-0.0176</td>
+<td>0.0553</td>
 </tr>
 <tr class="even">
 <td>region_South</td>
 <td>0.0566</td>
+<td>0.0543</td>
 </tr>
 <tr class="odd">
 <td>region_Southwest</td>
 <td>0.0506</td>
+<td>0.0505</td>
 </tr>
 <tr class="even">
 <td>iscustomer</td>
 <td>0.2076</td>
+<td>0.0312</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="237">
+<div class="cell-output cell-output-display" data-execution_count="150">
 
 <div class="result-box">
-  <p><strong> Log-Likelihood at MLE:</strong> -3258.07</p>
+  <p><strong>Log-Likelihood at MLE:</strong> -3258.07</p>
 </div>
 </div>
 </div>
-<p><em>todo: Check your results using R’s glm() function or Python sm.GLM() function.</em></p>
-<div id="714e4b85" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the same standardized/scaled features</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>X_sm <span class="op">=</span> blueprinty[[<span class="st">'age_scaled'</span>, <span class="st">'age_squared'</span>, <span class="st">'region_Northeast'</span>,</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'region_Northwest'</span>, <span class="st">'region_South'</span>, <span class="st">'region_Southwest'</span>, <span class="st">'iscustomer'</span>]].astype(<span class="bu">float</span>).to_numpy()</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Add intercept (statsmodels handles it with sm.add_constant)</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>X_sm <span class="op">=</span> sm.add_constant(X_sm)</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>y_sm <span class="op">=</span> blueprinty[<span class="st">'patents'</span>]</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> sm.GLM(y_sm, X_sm, family<span class="op">=</span>sm.families.Poisson())</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> model.fit()</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result.summary())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fbdaf67c" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the same standardized/scaled features</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>X_sm <span class="op">=</span> blueprinty[[<span class="st">'age_scaled'</span>, <span class="st">'age_squared'</span>, <span class="st">'region_Northeast'</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'region_Northwest'</span>, <span class="st">'region_South'</span>, <span class="st">'region_Southwest'</span>, <span class="st">'iscustomer'</span>]].astype(<span class="bu">float</span>).to_numpy()</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Add intercept (statsmodels handles it with sm.add_constant)</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>X_sm <span class="op">=</span> sm.add_constant(X_sm)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>y_sm <span class="op">=</span> blueprinty[<span class="st">'patents'</span>]</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> sm.GLM(y_sm, X_sm, family<span class="op">=</span>sm.families.Poisson())</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> model.fit()</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result.summary())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                 Generalized Linear Model Regression Results                  
 ==============================================================================
@@ -752,8 +746,8 @@ Model:                            GLM   Df Residuals:                     1492
 Model Family:                 Poisson   Df Model:                            7
 Link Function:                    Log   Scale:                          1.0000
 Method:                          IRLS   Log-Likelihood:                -3258.1
-Date:                Sun, 04 May 2025   Deviance:                       2143.3
-Time:                        16:03:20   Pearson chi2:                 2.07e+03
+Date:                Mon, 05 May 2025   Deviance:                       2143.3
+Time:                        21:09:19   Pearson chi2:                 2.07e+03
 No. Iterations:                     5   Pseudo R-squ. (CS):             0.1360
 Covariance Type:            nonrobust                                         
 ==============================================================================
@@ -770,9 +764,28 @@ x7             0.2076      0.031      6.719      0.000       0.147       0.268
 ==============================================================================</code></pre>
 </div>
 </div>
-<p><em>todo: Interpret the results.</em></p>
-<p>The strongest effect is from iscustomer → customers are more innovative Age has a mild downward effect — and gets stronger with age² Region effects are minor — none stand out as very strong</p>
-<p><em>todo: What do you conclude about the effect of Blueprinty’s software on patent success? Because the beta coefficients are not directly interpretable, it may help to create two fake datasets: X_0 and X_1 where X_0 is the X data but with iscustomer=0 for every observation and X_1 is the X data but with iscustomer=1 for every observation. Then, use X_0 and your fitted model to get the vector of predicted number of patents (y_pred_0) for every firm in the dataset, and use X_1 to get Y_pred_1 for every firm. Then subtract y_pred_1 minus y_pred_0 and take the average of that vector of differences.</em></p>
+<p>The strongest effect is from iscustomer Age has a mild downward effect Region effects are minor</p>
+<div id="c529e258" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Copy X and set iscustomer to 0 and 1 for every firm</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>X_0 <span class="op">=</span> X.copy()</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>X_1 <span class="op">=</span> X.copy()</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>iscustomer_index <span class="op">=</span> column_names.index(<span class="st">"iscustomer"</span>)  <span class="co"># Adjust if you know the column index directly</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>X_0[:, iscustomer_index] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>X_1[:, iscustomer_index] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Predict lambda (expected # patents) for both scenarios</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>y_pred_0 <span class="op">=</span> np.exp(X_0 <span class="op">@</span> beta_mle)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>y_pred_1 <span class="op">=</span> np.exp(X_1 <span class="op">@</span> beta_mle)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Estimate average treatment effect of being a customer</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>avg_effect <span class="op">=</span> np.mean(y_pred_1 <span class="op">-</span> y_pred_0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="dff0cd74" class="cell" data-execution_count="18">
+<div class="cell-output cell-output-stdout">
+<pre><code>Estimated average effect of using Blueprinty's software on patent success: 0.7928</code></pre>
+</div>
+</div>
 </section>
 </section>
 <section id="airbnb-case-study" class="level2">
@@ -809,13 +822,13 @@ Variable Definitions
 </div>
 </div>
 <p><em>todo: Assume the number of reviews is a good proxy for the number of bookings. Perform some exploratory data analysis to get a feel for the data, handle or drop observations with missing values on relevant variables, build one or more models (e.g., a poisson regression model for the number of bookings as proxied by the number of reviews), and interpret model coefficients to describe variation in the number of reviews as a function of the variables provided.</em></p>
-<div id="e3086eb7" class="cell" data-execution_count="17">
+<div id="e2a2d15b" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>airbnb[<span class="st">'price_bins'</span>] <span class="op">=</span> pd.cut(airbnb[<span class="st">'price'</span>], bins<span class="op">=</span>[<span class="dv">0</span>,<span class="dv">500</span>,<span class="dv">5000</span>, <span class="dv">10000</span>], right<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>airbnb[<span class="st">'bathrooms_bins'</span>] <span class="op">=</span> pd.cut(airbnb[<span class="st">'bathrooms'</span>], bins<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>], right<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>airbnb[<span class="st">'bedrooms_bins'</span>] <span class="op">=</span> pd.cut(airbnb[<span class="st">'bedrooms'</span>], bins<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>], right<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>airbnb[<span class="st">'number_of_reviews_bins'</span>] <span class="op">=</span> pd.cut(airbnb[<span class="st">'number_of_reviews'</span>], bins<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>, <span class="dv">80</span>, <span class="dv">90</span>, <span class="dv">100</span>], right<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="80fb2fa0" class="cell" data-execution_count="18">
+<div id="6746be72" class="cell" data-execution_count="20">
 <div class="cell-output cell-output-display">
 <div>
 
@@ -872,12 +885,12 @@ Variable Definitions
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="hw2_questions_files/figure-html/cell-19-output-2.png" width="757" height="468" class="figure-img"></p>
+<p><img src="hw2_questions_files/figure-html/cell-21-output-2.png" width="757" height="468" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="8af25811" class="cell" data-execution_count="19">
+<div id="b5454b79" class="cell" data-execution_count="21">
 <div class="cell-output cell-output-display">
 <div>
 
@@ -934,84 +947,38 @@ Variable Definitions
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="hw2_questions_files/figure-html/cell-20-output-2.png" width="757" height="468" class="figure-img"></p>
+<p><img src="hw2_questions_files/figure-html/cell-22-output-2.png" width="757" height="468" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="e3922b5c" class="cell" data-execution_count="20">
+<div id="002be1f3" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>airbnb <span class="op">=</span> airbnb[airbnb[<span class="st">'price'</span>] <span class="op">&lt;=</span> <span class="dv">500</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Drop rows with missing values across all relevant columns (before plotting)</p>
+<div id="d6c14097" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>eda_cols <span class="op">=</span> [<span class="st">'number_of_reviews'</span>, <span class="st">'price'</span>, <span class="st">'bathrooms'</span>, <span class="st">'bedrooms'</span>, <span class="st">'days'</span>]</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>airbnb_eda <span class="op">=</span> airbnb.dropna(subset<span class="op">=</span>eda_cols)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="f8fa486e" class="cell" data-execution_count="25">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="hw2_questions_files/figure-html/cell-21-output-1.png" width="610" height="449" class="figure-img"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="hw2_questions_files/figure-html/cell-21-output-2.png" width="650" height="431" class="figure-img"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="hw2_questions_files/figure-html/cell-21-output-3.png" width="593" height="449" class="figure-img"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                 Generalized Linear Model Regression Results                  
-==============================================================================
-Dep. Variable:      number_of_reviews   No. Observations:                40395
-Model:                            GLM   Df Residuals:                    40391
-Model Family:                 Poisson   Df Model:                            3
-Link Function:                    Log   Scale:                          1.0000
-Method:                          IRLS   Log-Likelihood:            -7.2357e+05
-Date:                Sun, 04 May 2025   Deviance:                   1.3240e+06
-Time:                        16:03:21   Pearson chi2:                 2.16e+06
-No. Iterations:                     6   Pseudo R-squ. (CS):            0.09222
-Covariance Type:            nonrobust                                         
-==============================================================================
-                 coef    std err          z      P&gt;|z|      [0.025      0.975]
-------------------------------------------------------------------------------
-const          2.8149      0.004    694.031      0.000       2.807       2.823
-price         -0.0002    9.7e-06    -25.475      0.000      -0.000      -0.000
-bathrooms     -0.1340      0.004    -35.012      0.000      -0.141      -0.126
-bedrooms       0.1139      0.002     56.587      0.000       0.110       0.118
-==============================================================================</code></pre>
-</div>
-</div>
-<p>We modeled the number of Airbnb reviews (used as a proxy for bookings) using a Poisson regression with predictors including price, number of bathrooms, and number of bedrooms. The model indicates that higher prices are associated with a small but statistically significant decrease in expected reviews, while listings with more bedrooms tend to receive more reviews, suggesting increased demand for larger spaces. Interestingly, additional bathrooms are associated with fewer reviews, potentially reflecting a trend where more luxurious properties have fewer but longer or higher-priced stays. Overall, the results suggest that price sensitivity and listing size play meaningful roles in driving booking activity.</p>
-<div id="51821ece" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>airbnb <span class="op">=</span> airbnb[airbnb[<span class="st">'price'</span>] <span class="op">&lt;=</span> <span class="dv">500</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<section id="drop-rows-with-missing-values-across-all-relevant-columns-before-plotting" class="level4">
-<h4 class="anchored" data-anchor-id="drop-rows-with-missing-values-across-all-relevant-columns-before-plotting">Drop rows with missing values across all relevant columns (before plotting)</h4>
-<div id="a7fc6bcb" class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>eda_cols <span class="op">=</span> [<span class="st">'number_of_reviews'</span>, <span class="st">'price'</span>, <span class="st">'bathrooms'</span>, <span class="st">'bedrooms'</span>, <span class="st">'days'</span>]</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>airbnb_eda <span class="op">=</span> airbnb.dropna(subset<span class="op">=</span>eda_cols)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="17ad6f03" class="cell" data-execution_count="24">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="hw2_questions_files/figure-html/cell-25-output-1.png" width="610" height="449" class="figure-img"></p>
+<p><img src="hw2_questions_files/figure-html/cell-26-output-1.png" width="610" height="449" class="figure-img"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="hw2_questions_files/figure-html/cell-25-output-2.png" width="650" height="431" class="figure-img"></p>
+<p><img src="hw2_questions_files/figure-html/cell-26-output-2.png" width="650" height="431" class="figure-img"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="hw2_questions_files/figure-html/cell-25-output-3.png" width="593" height="449" class="figure-img"></p>
+<p><img src="hw2_questions_files/figure-html/cell-26-output-3.png" width="593" height="449" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1023,8 +990,8 @@ Model:                            GLM   Df Residuals:                    39650
 Model Family:                 Poisson   Df Model:                            3
 Link Function:                    Log   Scale:                          1.0000
 Method:                          IRLS   Log-Likelihood:            -7.1266e+05
-Date:                Sun, 04 May 2025   Deviance:                   1.3039e+06
-Time:                        16:03:21   Pearson chi2:                 2.13e+06
+Date:                Mon, 05 May 2025   Deviance:                   1.3039e+06
+Time:                        21:09:20   Pearson chi2:                 2.13e+06
 No. Iterations:                     6   Pseudo R-squ. (CS):            0.07089
 Covariance Type:            nonrobust                                         
 ==============================================================================
@@ -1037,9 +1004,72 @@ bedrooms       0.0928      0.002     43.494      0.000       0.089       0.097
 ==============================================================================</code></pre>
 </div>
 </div>
+<div id="00174120" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>airbnb_eda[<span class="st">'intercept'</span>] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> airbnb_eda[[<span class="st">'intercept'</span>,<span class="st">'price'</span>, <span class="st">'bathrooms'</span>, <span class="st">'bedrooms'</span>]].astype(<span class="bu">float</span>).to_numpy()</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> airbnb_eda[<span class="st">'number_of_reviews'</span>].values</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>initial_beta <span class="op">=</span> np.zeros(X.shape[<span class="dv">1</span>])</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> minimize(</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    fun<span class="op">=</span><span class="kw">lambda</span> b: <span class="op">-</span>poisson_log_likelihood_regression(b, X, y),</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    x0<span class="op">=</span>initial_beta,</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    method<span class="op">=</span><span class="st">'BFGS'</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>beta_mle <span class="op">=</span> result.x</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>log_lik_at_mle <span class="op">=</span> <span class="op">-</span>result.fun</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>hessian_inv <span class="op">=</span> result.hess_inv</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>standard_errors <span class="op">=</span> np.sqrt(np.diag(hessian_inv))</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>coef_df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Variable'</span>: [<span class="st">'intercept'</span>,<span class="st">'price'</span>, <span class="st">'bathrooms'</span>, <span class="st">'bedrooms'</span>],</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Estimate (MLE)'</span>: [<span class="ss">f"</span><span class="sc">{</span>val<span class="sc">:.4f}</span><span class="ss">"</span> <span class="cf">for</span> val <span class="kw">in</span> beta_mle],</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Std. Error'</span>: [<span class="ss">f"</span><span class="sc">{</span>se<span class="sc">:.4f}</span><span class="ss">"</span> <span class="cf">for</span> se <span class="kw">in</span> standard_errors]</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="4113eb6b" class="cell" data-execution_count="27">
+<div class="cell-output cell-output-display">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Variable</th>
+<th data-quarto-table-cell-role="th">Estimate (MLE)</th>
+<th data-quarto-table-cell-role="th">Std. Error</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>intercept</td>
+<td>2.7975</td>
+<td>0.0047</td>
+</tr>
+<tr class="even">
+<td>price</td>
+<td>0.0002</td>
+<td>0.0000</td>
+</tr>
+<tr class="odd">
+<td>bathrooms</td>
+<td>-0.1415</td>
+<td>0.0043</td>
+</tr>
+<tr class="even">
+<td>bedrooms</td>
+<td>0.0928</td>
+<td>0.0021</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="162">
+
+<div class="result-box">
+  <p><strong>Log-Likelihood at MLE:</strong> -712663.27</p>
+</div>
+</div>
+</div>
+<p>In this Poisson regression model, each additional bedroom is associated with a 9.3% increase in expected reviews. Bathrooms have a negative effect, with each additional bathroom linked to a 14% decrease. Price has a statistically significant but negligible impact, increasing expected reviews by just 0.02% per dollar.</p>
 
 
-</section>
 </section>
 </section>
 
