@@ -476,7 +476,7 @@ price      -0.099480    0.006301       -0.111831       -0.087130</code></pre>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Matplotlib created a temporary cache directory at /tmp/matplotlib-esic1q94 because the default path (/home/jovyan/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.</code></pre>
+<pre><code>Matplotlib created a temporary cache directory at /tmp/matplotlib-h2x17enf because the default path (/home/jovyan/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure numeric stability and float64 types</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> X.astype(np.float64)</span>
@@ -550,10 +550,10 @@ price      -0.099480    0.006301       -0.111831       -0.087130</code></pre>
 <span id="cb13-70"><a href="#cb13-70" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(posterior_summary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         Posterior Mean  Posterior Std  95% CI Lower  95% CI Upper
-brand_N        0.951123       0.109044      0.739863      1.163596
-brand_P        0.510418       0.105271      0.305070      0.716997
-ad_Yes        -0.728955       0.086608     -0.896625     -0.554716
-price         -0.099892       0.006327     -0.111950     -0.087650</code></pre>
+brand_N        0.933656       0.113566      0.719171      1.171390
+brand_P        0.491293       0.114663      0.281182      0.724208
+ad_Yes        -0.730734       0.086280     -0.905841     -0.562095
+price         -0.099849       0.006241     -0.112272     -0.087599</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot for price parameter (index 3)</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">5</span>))</span>
