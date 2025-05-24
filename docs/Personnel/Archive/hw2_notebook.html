@@ -1246,8 +1246,100 @@ bedrooms       0.1139      0.002     56.587      0.000       0.110       0.118
 ==============================================================================</code></pre>
 </div>
 </div>
-<div id="d35dddf2" class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>airbnb <span class="op">=</span> airbnb[airbnb[<span class="st">'price'</span>] <span class="op">&lt;=</span> <span class="dv">2000</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="d35dddf2" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>airbnb <span class="op">=</span> airbnb[airbnb[<span class="st">'price'</span>] <span class="op">&lt;=</span> <span class="dv">500</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="445fa860" class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.api <span class="im">import</span> GLM</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.genmod.families <span class="im">import</span> Poisson</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Exploratory Data Analysis (EDA)</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop rows with missing values across all relevant columns (before plotting)</span></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>eda_cols <span class="op">=</span> [<span class="st">'number_of_reviews'</span>, <span class="st">'price'</span>, <span class="st">'bathrooms'</span>, <span class="st">'bedrooms'</span>, <span class="st">'days'</span>]</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>airbnb_eda <span class="op">=</span> airbnb.dropna(subset<span class="op">=</span>eda_cols)</span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Distribution of the number of reviews</span></span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>sns.histplot(airbnb_eda[<span class="st">'number_of_reviews'</span>], bins<span class="op">=</span><span class="dv">30</span>, kde<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Distribution of Number of Reviews'</span>)</span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Number of Reviews'</span>)</span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Frequency'</span>)</span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Correlation heatmap for numerical variables</span></span>
+<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a>numerical_cols <span class="op">=</span> [<span class="st">'days'</span>, <span class="st">'bathrooms'</span>, <span class="st">'bedrooms'</span>, <span class="st">'price'</span>, <span class="st">'number_of_reviews'</span>]</span>
+<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a>sns.heatmap(airbnb_eda[numerical_cols].corr(), annot<span class="op">=</span><span class="va">True</span>, cmap<span class="op">=</span><span class="st">'coolwarm'</span>)</span>
+<span id="cb39-23"><a href="#cb39-23" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Correlation Heatmap'</span>)</span>
+<span id="cb39-24"><a href="#cb39-24" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb39-25"><a href="#cb39-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-26"><a href="#cb39-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter plot of price vs. number of reviews</span></span>
+<span id="cb39-27"><a href="#cb39-27" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span><span class="st">'price'</span>, y<span class="op">=</span><span class="st">'number_of_reviews'</span>, data<span class="op">=</span>airbnb_eda)</span>
+<span id="cb39-28"><a href="#cb39-28" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Price vs. Number of Reviews'</span>)</span>
+<span id="cb39-29"><a href="#cb39-29" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Price'</span>)</span>
+<span id="cb39-30"><a href="#cb39-30" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Number of Reviews'</span>)</span>
+<span id="cb39-31"><a href="#cb39-31" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb39-32"><a href="#cb39-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-33"><a href="#cb39-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Clean data by dropping rows with missing values in model inputs</span></span>
+<span id="cb39-34"><a href="#cb39-34" aria-hidden="true" tabindex="-1"></a>relevant_cols <span class="op">=</span> [<span class="st">'number_of_reviews'</span>, <span class="st">'price'</span>, <span class="st">'bathrooms'</span>, <span class="st">'bedrooms'</span>]</span>
+<span id="cb39-35"><a href="#cb39-35" aria-hidden="true" tabindex="-1"></a>airbnb_cleaned <span class="op">=</span> airbnb.dropna(subset<span class="op">=</span>relevant_cols)</span>
+<span id="cb39-36"><a href="#cb39-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-37"><a href="#cb39-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Build a Poisson Regression Model</span></span>
+<span id="cb39-38"><a href="#cb39-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-39"><a href="#cb39-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Define dependent and independent variables</span></span>
+<span id="cb39-40"><a href="#cb39-40" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> airbnb_cleaned[[<span class="st">'price'</span>, <span class="st">'bathrooms'</span>, <span class="st">'bedrooms'</span>]]</span>
+<span id="cb39-41"><a href="#cb39-41" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> sm.add_constant(X)  <span class="co"># Add intercept</span></span>
+<span id="cb39-42"><a href="#cb39-42" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> airbnb_cleaned[<span class="st">'number_of_reviews'</span>]</span>
+<span id="cb39-43"><a href="#cb39-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-44"><a href="#cb39-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the Poisson regression model</span></span>
+<span id="cb39-45"><a href="#cb39-45" aria-hidden="true" tabindex="-1"></a>poisson_model <span class="op">=</span> GLM(y, X, family<span class="op">=</span>Poisson()).fit()</span>
+<span id="cb39-46"><a href="#cb39-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-47"><a href="#cb39-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: Interpret Model Coefficients</span></span>
+<span id="cb39-48"><a href="#cb39-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(poisson_model.summary())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="hw2_notebook_files/figure-html/cell-28-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="hw2_notebook_files/figure-html/cell-28-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="hw2_notebook_files/figure-html/cell-28-output-3.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 Generalized Linear Model Regression Results                  
+==============================================================================
+Dep. Variable:      number_of_reviews   No. Observations:                39654
+Model:                            GLM   Df Residuals:                    39650
+Model Family:                 Poisson   Df Model:                            3
+Link Function:                    Log   Scale:                          1.0000
+Method:                          IRLS   Log-Likelihood:            -7.1266e+05
+Date:                Sun, 04 May 2025   Deviance:                   1.3039e+06
+Time:                        16:00:24   Pearson chi2:                 2.13e+06
+No. Iterations:                     6   Pseudo R-squ. (CS):            0.07089
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          2.7975      0.005    620.600      0.000       2.789       2.806
+price          0.0002   1.58e-05     10.273      0.000       0.000       0.000
+bathrooms     -0.1415      0.004    -34.929      0.000      -0.149      -0.134
+bedrooms       0.0928      0.002     43.494      0.000       0.089       0.097
+==============================================================================</code></pre>
+</div>
 </div>
 
 

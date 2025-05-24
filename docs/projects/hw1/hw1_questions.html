@@ -234,7 +234,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>First we’ll load the data from a dta file and conduct EDA inorder to better understand the datatypes and distrubtion of data.</li>
 <li>We’ll rename the columns we want to make a distribution plot of and check the distribution and check for any outliers.</li>
 </ul>
-<div id="6a70c413" class="cell" data-execution_count="2">
+<div id="4e89f058" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div>
 
@@ -613,7 +613,7 @@ Variables To Test at the 95% CI
 <li>We’ll use css styling throughout our analysis for better readability</li>
 </ol></li>
 </ul>
-<div id="f3d6ea31" class="cell" data-execution_count="3">
+<div id="1b5f8aed" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>variables_to_test <span class="op">=</span> [<span class="st">'mrm2'</span>, <span class="st">'dormant'</span>, <span class="st">'female'</span>]</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> t_test(data, target):</span>
@@ -651,7 +651,7 @@ Variables To Test at the 95% CI
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> display(res)</span>
 <span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>t_test_results <span class="op">=</span> {}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="61b6a2f8" class="cell" data-execution_count="4">
+<div id="7c308a85" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display, HTML</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> variables_to_test:</span>
@@ -803,7 +803,7 @@ Variables To Test at the 95% CI
 <section id="linear-regression-results" class="level3">
 <h3 class="anchored" data-anchor-id="linear-regression-results">Linear Regression Results</h3>
 <p>Using a Linear regression we can verfy our results of the t-test for the <code>mrm2</code> variable</p>
-<div id="ec5539f7" class="cell" data-execution_count="5">
+<div id="6699e631" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display" data-execution_count="5">
 <style>#sk-container-id-1 {
   /* Definition of color scheme common for light and dark mode */
@@ -1212,7 +1212,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>LinearRegression()</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked=""><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;&nbsp;LinearRegression<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.linear_model.LinearRegression.html">?<span>Documentation for LinearRegression</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>LinearRegression()</pre></div> </div></div></div></div>
 </div>
 </div>
-<div id="eda6c98c" class="cell" data-execution_count="6">
+<div id="805570d6" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div>
 
@@ -1266,7 +1266,7 @@ Percentage of Donators by Treatment Group
 
 </div>
 </div>
-<div id="e851ae39" class="cell" data-execution_count="7">
+<div id="d02b9798" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display">
 <div>
 
@@ -1319,7 +1319,7 @@ T-Test of was a donation made
 
 </div>
 </div>
-<div id="0b3b2327" class="cell" data-execution_count="8">
+<div id="5d6ff432" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>t_test(data, <span class="st">'gave'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -1372,7 +1372,7 @@ Probit Regression
 
 </div>
 </div>
-<div id="bec1b9c6" class="cell" data-execution_count="9">
+<div id="e501e1d3" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> data[[<span class="st">'treatment'</span>]]</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> data[<span class="st">'gave'</span>]</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1395,7 +1395,7 @@ Probit Regression
          Iterations 7</code></pre>
 </div>
 </div>
-<div id="8ceb24c0" class="cell" data-execution_count="10">
+<div id="3f98f419" class="cell" data-execution_count="10">
 <div class="cell-output cell-output-display">
 
 <div class="balance-card">
@@ -1452,7 +1452,7 @@ Match Rate Analysis
 
 </div>
 </div>
-<div id="bfeb27c2" class="cell" data-execution_count="11">
+<div id="96630528" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter to treatment group only</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>matched <span class="op">=</span> data[data[<span class="st">'treatment'</span>] <span class="op">==</span> <span class="dv">1</span>]</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1557,7 +1557,7 @@ Ratio Analysis
 
 </div>
 </div>
-<div id="1d1ad2e3" class="cell" data-execution_count="12">
+<div id="6256800a" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>matched <span class="op">=</span> data[data[<span class="st">'treatment'</span>] <span class="op">==</span> <span class="dv">1</span>].copy()</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>matched[<span class="st">'ratio1'</span>] <span class="op">=</span> (matched[<span class="st">'ratio'</span>] <span class="op">==</span> <span class="dv">1</span>).astype(<span class="bu">int</span>)</span>
@@ -1585,7 +1585,7 @@ Ratio Analysis
 <span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>table[<span class="st">'Variable'</span>] <span class="op">=</span> table[<span class="st">'Variable'</span>].replace({<span class="st">'const'</span>: <span class="st">'Intercept'</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="d77a481e" class="cell" data-execution_count="13">
+<div id="f6fd9fff" class="cell" data-execution_count="13">
 <div class="cell-output cell-output-display" data-execution_count="13">
 
 <div class="response-card">
@@ -1645,7 +1645,7 @@ Match Rate Regression Analysis
 
 </div>
 </div>
-<div id="b8f7b8cd" class="cell" data-execution_count="14">
+<div id="8d670c15" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter for treatment group</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>matched <span class="op">=</span> data[data[<span class="st">'treatment'</span>] <span class="op">==</span> <span class="dv">1</span>]</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1669,7 +1669,7 @@ Match Rate Regression Analysis
 <span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>diff_model_2_1_vs_1_1 <span class="op">=</span> coef_2_1</span>
 <span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>diff_model_3_1_vs_2_1 <span class="op">=</span> coef_3_1 <span class="op">-</span> coef_2_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="e87cea17" class="cell" data-execution_count="15">
+<div id="551dc581" class="cell" data-execution_count="15">
 <div class="cell-output cell-output-display" data-execution_count="15">
 
 <div class="response-card">
@@ -1702,7 +1702,7 @@ Donation Size Analysis
 
 </div>
 </div>
-<div id="a6eac53a" class="cell" data-execution_count="16">
+<div id="5675eef1" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> ttest_ind</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Separate groups</span></span>
@@ -1731,7 +1731,7 @@ Ratio Analysis
 
 </div>
 </div>
-<div id="a8ba9345" class="cell" data-execution_count="17">
+<div id="6983f1cc" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>donors <span class="op">=</span> data[data[<span class="st">'amount'</span>] <span class="op">&gt;</span> <span class="dv">0</span>]</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1765,7 +1765,7 @@ Plot Analysis
 
 </div>
 </div>
-<div id="0af42c4c" class="cell" data-execution_count="19">
+<div id="c7fa29bb" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter to people who donated</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>donors <span class="op">=</span> data[data[<span class="st">'amount'</span>] <span class="op">&gt;</span> <span class="dv">0</span>]</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>control_donors <span class="op">=</span> donors[donors[<span class="st">'treatment'</span>] <span class="op">==</span> <span class="dv">0</span>]</span>
@@ -1775,7 +1775,7 @@ Plot Analysis
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>control_mean <span class="op">=</span> control_donors[<span class="st">'amount'</span>].mean()</span>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>treatment_mean <span class="op">=</span> treatment_donors[<span class="st">'amount'</span>].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="61110b48" class="cell" data-execution_count="20">
+<div id="b76e8083" class="cell" data-execution_count="20">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1805,7 +1805,7 @@ Simulation Using Bernoullui Distrubtion
 </div>
 </div>
 <p>From out bernoulii parameters we can caclulate the mean and the stndard deviation of the distrubtion</p>
-<div id="b3651309" class="cell" data-execution_count="21">
+<div id="2300a176" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>p_no <span class="op">=</span><span class="fl">.018</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>mu_no_char <span class="op">=</span> p_no</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>std_no_char <span class="op">=</span> (mu_no_char<span class="op">*</span> (<span class="dv">1</span><span class="op">-</span>mu_no_char))<span class="op">**</span><span class="fl">.5</span></span>
@@ -1814,7 +1814,7 @@ Simulation Using Bernoullui Distrubtion
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>mu_char <span class="op">=</span> p</span>
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>std_char <span class="op">=</span>  (mu_char <span class="op">*</span> (<span class="dv">1</span><span class="op">-</span>mu_char))<span class="op">**</span><span class="fl">.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="0e83614e" class="cell" data-execution_count="22">
+<div id="f2c8d319" class="cell" data-execution_count="22">
 <div class="cell-output cell-output-stdout">
 <pre><code>The mean and standard deviation for the respondents who did not receive a donation match is (0.018, 0.13)
 The mean and standard deviation for the respondents who did receive a donation match is (0.022, 0.15)</code></pre>
@@ -1823,7 +1823,7 @@ The mean and standard deviation for the respondents who did receive a donation m
 <section id="law-of-large-numbers" class="level3">
 <h3 class="anchored" data-anchor-id="law-of-large-numbers">Law of Large Numbers</h3>
 <p>The Law of Large numbers say the more information we have the better our estimates will be. In statics terminology as we increase our sample size the sample mean will move closer to the population mean. To see this law in action we’ll increase our sample size to 10,00 and calcuate the average as we increase the sample size. This should allign with the means that we know from our benoulli distrbution.</p>
-<div id="4f53b63a" class="cell" data-execution_count="23">
+<div id="cad068f1" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">10_000</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">38</span>)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>no_match_draws <span class="op">=</span> np.random.binomial(<span class="dv">1</span>, p_no, size<span class="op">=</span>n)</span>
@@ -1831,7 +1831,7 @@ The mean and standard deviation for the respondents who did receive a donation m
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>differences <span class="op">=</span> match_draws <span class="op">-</span> no_match_draws</span>
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>cumulative_avg <span class="op">=</span> np.cumsum(differences) <span class="op">/</span> np.arange(<span class="dv">1</span>, <span class="dv">10001</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="6b3cc0cc" class="cell" data-execution_count="24">
+<div id="3bf20664" class="cell" data-execution_count="24">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1857,7 +1857,7 @@ Central Limit Theorem Demo
 </div>
 </div>
 <p>The central limit theorem states that as we increase the sample size of a sample the distrubtion of the samples will become more like the bell-shaped cureve, regardless of the starting distrubtion. To Test this this we’ll create 4 sample sizes from our given bernoulli distribtuion. We should expect to see the central limit theorem ‘kick-in’ and the distribtuion start to become more bellshaped.</p>
-<div id="f6887283" class="cell" data-execution_count="25">
+<div id="81b834df" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
