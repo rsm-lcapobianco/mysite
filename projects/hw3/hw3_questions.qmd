@@ -181,6 +181,9 @@ def log_likelihood(beta, X, y, group_indicator):
 
 <!-- _todo: Use `optim()` in R or `scipy.optimize()` in Python to find the MLEs for the 4 parameters ($\beta_\text{netflix}$, $\beta_\text{prime}$, $\beta_\text{ads}$, $\beta_\text{price}$), as well as their standard errors (from the Hessian). For each parameter construct a 95% confidence interval._ -->
 
+Here I'll split the data into X and Y which represent my explantory and response variables. Then creating groups to identify choice task.
+
+Then we'll initalze the Beta's for our log_likelhood function and run the optimize to find what the optimal values for beta are given the data and return our MLE means and std errors.
 
 ```{python}
 import numpy as np
@@ -219,6 +222,9 @@ hessian_inv = result.hess_inv  # estimated inverse Hessian
 standard_errors = np.sqrt(np.diag(hessian_inv))  # approximate SEs
 
 ```
+
+I'll create confidence intervals using the standard errors we calcualted in the last cell and multyplying by 1.96, which is the z-score associated with a 95% CI interval in the standard normal distrbution and then return the results.
+
 
 ```{python}
 #| echo: false
@@ -277,6 +283,14 @@ y = y.astype(np.float64)
 group_indicator = group_indicator.astype(np.float64)
 
 ```
+
+I'll rewrite the likelhood function modfied to use the logs and include the given log priors for each of the beta and begin the MCMC chain.
+The chain will cycle through 11,000 iterations with the first 1,000 thrown out because the algorithim needs to be 'dialed-in.' The Beta will be intialzed at the given values of mean zero and std devationd .05,.05,.05, and .005.
+
+Then I'll starty looping through the chain calcualting the proposed posterior distrbution and the existing posterrior distrbution. We'll find the accept ratio as the ratio between the proposed and existing and then if it meets criteria we'll accept or reject the distrbtuion. If the accept ratio is greater than 1 we'll accept the the proposed distrbution. If its less than one we'll accept the proposed distrubtion with a probability equal to accept probability. 
+
+Once we've cycled through the loop 11,000 times we'll have enough information about the form of the posterior distrbution. From this postrerior distrubtion we are able to directly calcualte the mean of the sample posterior distrbution and the std dev of the sample posterior distrbution. 
+
 ```{python}
 # Modified log-posterior function: log-likelihood + log-prior
 def log_posterior(beta, X, y, group_indicator):
@@ -346,6 +360,8 @@ print(posterior_summary)
 print(results_df)
 
 ```
+The MLE method and Metrolopisis Hasting methods produce very simialar coeffcietns and std errors which gives us high confidence that our process worked. 
+
 ```{python}
 #| echo: false
 

@@ -391,6 +391,8 @@ Note
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>np.<span class="bu">sum</span>(y <span class="op">*</span> log_probs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <!-- _todo: Use `optim()` in R or `scipy.optimize()` in Python to find the MLEs for the 4 parameters ($\beta_\text{netflix}$, $\beta_\text{prime}$, $\beta_\text{ads}$, $\beta_\text{price}$), as well as their standard errors (from the Hessian). For each parameter construct a 95% confidence interval._ -->
+<p>Here I’ll split the data into X and Y which represent my explantory and response variables. Then creating groups to identify choice task.</p>
+<p>Then we’ll initalze the Beta’s for our log_likelhood function and run the optimize to find what the optimal values for beta are given the data and return our MLE means and std errors.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -427,6 +429,7 @@ Note
 <span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>hessian_inv <span class="op">=</span> result.hess_inv  <span class="co"># estimated inverse Hessian</span></span>
 <span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>standard_errors <span class="op">=</span> np.sqrt(np.diag(hessian_inv))  <span class="co"># approximate SEs</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>I’ll create confidence intervals using the standard errors we calcualted in the last cell and multyplying by 1.96, which is the z-score associated with a 95% CI interval in the standard normal distrbution and then return the results.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 95% confidence intervals</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>conf_ints <span class="op">=</span> np.column_stack([</span>
@@ -474,9 +477,12 @@ _todo: report the 4 posterior means, standard deviations, and 95% credible inter
 -->
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>Matplotlib created a temporary cache directory at /tmp/matplotlib-6974015g because the default path (/home/jovyan/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.</code></pre>
+<pre><code>Matplotlib created a temporary cache directory at /tmp/matplotlib-113bhyvy because the default path (/home/jovyan/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.</code></pre>
 </div>
 </div>
+<p>I’ll rewrite the likelhood function modfied to use the logs and include the given log priors for each of the beta and begin the MCMC chain. The chain will cycle through 11,000 iterations with the first 1,000 thrown out because the algorithim needs to be ‘dialed-in.’ The Beta will be intialzed at the given values of mean zero and std devationd .05,.05,.05, and .005.</p>
+<p>Then I’ll starty looping through the chain calcualting the proposed posterior distrbution and the existing posterrior distrbution. We’ll find the accept ratio as the ratio between the proposed and existing and then if it meets criteria we’ll accept or reject the distrbtuion. If the accept ratio is greater than 1 we’ll accept the the proposed distrbution. If its less than one we’ll accept the proposed distrubtion with a probability equal to accept probability.</p>
+<p>Once we’ve cycled through the loop 11,000 times we’ll have enough information about the form of the posterior distrbution. From this postrerior distrubtion we are able to directly calcualte the mean of the sample posterior distrbution and the std dev of the sample posterior distrbution.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Modified log-posterior function: log-likelihood + log-prior</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> log_posterior(beta, X, y, group_indicator):</span>
@@ -545,10 +551,10 @@ _todo: report the 4 posterior means, standard deviations, and 95% credible inter
 <span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(posterior_summary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         Posterior Mean  Posterior Std  95% CI Lower  95% CI Upper
-brand_N        0.949405       0.108528      0.749853      1.171745
-brand_P        0.510009       0.107841      0.295979      0.715891
-ad_Yes        -0.730962       0.086668     -0.900103     -0.550089
-price         -0.099273       0.006204     -0.111099     -0.087532</code></pre>
+brand_N        0.950860       0.107239      0.746743      1.162135
+brand_P        0.507505       0.117288      0.286510      0.745122
+ad_Yes        -0.732315       0.088935     -0.907723     -0.565445
+price         -0.100224       0.006429     -0.113180     -0.087969</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -559,6 +565,7 @@ ad_Yes     -0.731994    0.087630       -0.903748       -0.560240
 price      -0.099480    0.006301       -0.111831       -0.087130</code></pre>
 </div>
 </div>
+<p>The MLE method and Metrolopisis Hasting methods produce very simialar coeffcietns and std errors which gives us high confidence that our process worked.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
