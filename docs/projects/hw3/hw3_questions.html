@@ -477,7 +477,7 @@ _todo: report the 4 posterior means, standard deviations, and 95% credible inter
 -->
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>Matplotlib created a temporary cache directory at /tmp/matplotlib-113bhyvy because the default path (/home/jovyan/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.</code></pre>
+<pre><code>Matplotlib created a temporary cache directory at /tmp/matplotlib-d86p58xg because the default path (/home/jovyan/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.</code></pre>
 </div>
 </div>
 <p>I’ll rewrite the likelhood function modfied to use the logs and include the given log priors for each of the beta and begin the MCMC chain. The chain will cycle through 11,000 iterations with the first 1,000 thrown out because the algorithim needs to be ‘dialed-in.’ The Beta will be intialzed at the given values of mean zero and std devationd .05,.05,.05, and .005.</p>
@@ -551,10 +551,10 @@ _todo: report the 4 posterior means, standard deviations, and 95% credible inter
 <span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(posterior_summary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         Posterior Mean  Posterior Std  95% CI Lower  95% CI Upper
-brand_N        0.950860       0.107239      0.746743      1.162135
-brand_P        0.507505       0.117288      0.286510      0.745122
-ad_Yes        -0.732315       0.088935     -0.907723     -0.565445
-price         -0.100224       0.006429     -0.113180     -0.087969</code></pre>
+brand_N        0.943216       0.110210      0.718628      1.156964
+brand_P        0.503527       0.109440      0.289510      0.711242
+ad_Yes        -0.734433       0.088073     -0.905778     -0.558972
+price         -0.100047       0.006190     -0.112366     -0.088161</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
