@@ -209,7 +209,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="a.-k-means">1a. K-Means</h2>
 <p>We applied K-Means clustering to the Palmer Penguins dataset to uncover natural groupings based on two physical features: bill length and bill depth. After cleaning the data to exclude missing values, we implemented the K-Means algorithm from scratch, initializing centroids, assigning clusters using Euclidean distance, and updating centroids iteratively. A series of plots illustrated how the algorithm refined cluster assignments over several iterations. This hands-on implementation helped visualize how K-Means converges toward stable groupings in low-dimensional space.</p>
 <p>To determine the optimal number of clusters, we used the elbow method (via within-cluster sum of squares) and silhouette scores. Both metrics suggested that 2 or 3 clusters best captured the data structure. Visualizations of the final clustering for k=2. k=2 showed well-separated groups that align closely with known species differences, reinforcing the effectiveness of K-Means even in a simple two-feature scenario.</p>
-<div id="3f7c54ce" class="cell" data-execution_count="2">
+<div id="d3a563ee" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(peng.shape)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>peng.head()</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -333,7 +333,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="2fd534f2" class="cell" data-execution_count="3">
+<div id="546269b1" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -342,7 +342,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="a0d14707" class="cell" data-execution_count="4">
+<div id="242c12e1" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> initialize_centroids(X, k):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    indices <span class="op">=</span> np.random.choice(X.shape[<span class="dv">0</span>], k, replace<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">#return k rows from a dataframe of shape X.shape[0]</span></span>
@@ -371,7 +371,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="496d10d6" class="cell" data-execution_count="5">
+<div id="e84541b5" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> assign_clusters(X, centroids):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    distances <span class="op">=</span> np.linalg.norm(X[:, np.newaxis] <span class="op">-</span> centroids, axis<span class="op">=</span><span class="dv">2</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.argmin(distances, axis<span class="op">=</span><span class="dv">1</span>)</span>
@@ -440,7 +440,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="10e37f91" class="cell" data-execution_count="6">
+<div id="35f3b4af" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> silhouette_score, silhouette_samples</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -498,7 +498,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="0127e90c" class="cell" data-execution_count="7">
+<div id="dcd381f2" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> silhouette_samples, silhouette_score</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -593,7 +593,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="b.-key-drivers-analysis">2b. Key Drivers Analysis</h2>
 <p>This section performs a comprehensive Key Drivers Analysis to identify which variables are most influential in predicting the impact outcome using multiple statistical and machine learning-based importance metrics. The analysis begins by visualizing correlations between each predictor and the target using a heatmap and calculating Pearson correlation coefficients. From there, it systematically builds a suite of feature importance measures: standardized coefficients from a linear regression model, “usefulness” (the change in R² when each feature is removed), SHAP values for linear models, Johnson’s Relative Weights (an algebraic approximation to Shapley values), and feature importance from a Random Forest model. Each method captures a different perspective on importance—whether based on marginal associations, incremental model contribution, or predictive power in linear and nonlinear settings.</p>
 <p>The results are presented visually using bar charts for the top 10 features from each method, allowing for easy comparison. The final importance_df table consolidates all six metrics into a single view, providing a multi-faceted assessment of variable importance.</p>
-<div id="2aa822d1" class="cell" data-execution_count="8">
+<div id="f0fe4dbc" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>drivers <span class="op">=</span> pd.read_csv(<span class="st">'data/data_for_drivers_analysis.csv'</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(drivers.shape)</span>
@@ -601,7 +601,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-stdout">
 <pre><code>(2553, 12)</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="187">
+<div class="cell-output cell-output-display" data-execution_count="8">
 <div>
 
 
@@ -705,7 +705,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="62292a36" class="cell" data-execution_count="9">
+<div id="716f53f5" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the target column again</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>target_col <span class="op">=</span> <span class="st">"impact"</span> <span class="cf">if</span> <span class="st">"impact"</span> <span class="kw">in</span> drivers.columns <span class="cf">else</span> drivers.columns[<span class="op">-</span><span class="dv">1</span>]</span>
@@ -735,7 +735,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="4bd3fd94" class="cell" data-execution_count="10">
+<div id="2e0e06ad" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pearson_corr <span class="op">=</span> X.corrwith(y).<span class="bu">abs</span>()  <span class="co"># Absolute for magnitude</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>pearson_corr <span class="op">=</span> pearson_corr.sort_values(ascending<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Display top 10 features by absolute Pearson correlation</span></span>
@@ -772,7 +772,7 @@ dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="5c9ebe73" class="cell" data-execution_count="11">
+<div id="416b4e94" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -818,7 +818,7 @@ dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="073217a0" class="cell" data-execution_count="12">
+<div id="08cebf2c" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> r2_score</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>base_r2 <span class="op">=</span> r2_score(y, lr.predict(X_scaled))</span>
@@ -868,7 +868,7 @@ dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="df1e2bad" class="cell" data-execution_count="13">
+<div id="0dabe2a6" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> shap</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>explainer <span class="op">=</span> shap.Explainer(lr, X_scaled)</span>
@@ -928,7 +928,7 @@ trust                 0.026290  </code></pre>
 </div>
 </div>
 </div>
-<div id="64c362a3" class="cell" data-execution_count="14">
+<div id="8bde29a9" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>corr_matrix <span class="op">=</span> np.corrcoef(np.column_stack([X_scaled, y_scaled]), rowvar<span class="op">=</span><span class="va">False</span>)</span>
@@ -983,7 +983,7 @@ Name: Relative Weights, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="53484747" class="cell" data-execution_count="15">
+<div id="39ffb49e" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestRegressor</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>rf <span class="op">=</span> RandomForestRegressor(n_estimators<span class="op">=</span><span class="dv">1000</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
@@ -1034,8 +1034,8 @@ Name: Random Forest Importance, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="0aaf67bd" class="cell" data-execution_count="16">
-<div class="cell-output cell-output-display" data-execution_count="195">
+<div id="5c3ed2bd" class="cell" data-execution_count="16">
+<div class="cell-output cell-output-display" data-execution_count="16">
 <div>
 
 
