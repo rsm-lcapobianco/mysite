@@ -1,8 +1,8 @@
-<!-- ---
+---
 title: Lowell Resume
 format: html
 ---
 
 Last updated: 2025-04-05
 
-{{< pdf Content/LowellCapobiancoResume.pdf width=100% height=800 >}} -->
+{{< pdf Content/LowellCapobiancoResume.pdf width=100% height=800 >}}
