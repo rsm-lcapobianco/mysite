@@ -8,8 +8,6 @@ website:
     left:
       - href: index.qmd
         text: Home
-      # - href: Resume.qmd
-      #   text: Resume
       - href: projects.qmd
         text: Homework
       - text: Personnel Project
