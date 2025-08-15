@@ -1,5 +1,5 @@
 ---
-title: "My Homework"
+title: "Projects"
 listing:
     contents: projects
     type: default

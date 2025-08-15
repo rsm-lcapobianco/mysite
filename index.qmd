@@ -15,3 +15,46 @@ about:
 
 ---
 
+<p class="about-sub">Data & analytics professional building scalable, decision-ready systems.</p>
+<p>I design data workflows and automation that turn raw information into actionable insight. I’m currently earning an MS in Business Analytics at UC San Diego.</p>
+
+<div class="about-bullet-container">
+  <h3 class="about-bullets-title">Core Skills</h3>
+  <ul class="about-bullets">
+    <li>Build & optimize data pipelines (Python, SQL, SAP)</li>
+    <li>Automate reporting & streamline decisions</li>
+    <li>Translate business needs into technical solutions</li>
+    <li>Focus: machine learning, predictive analytics, BI</li>
+  </ul>
+</div>
+
+
+<style>
+.about-bullet-container {
+  border: 2px solid #ccc;       /* border around the list */
+  border-radius: 8px;
+  padding: 16px;
+  margin: 1.5em auto;
+  max-width: 600px;
+  background-color: #fafafa;    /* light background for contrast */
+}
+
+.about-bullets-title {
+  text-align: center;
+  margin-bottom: 0.5em;
+  padding-bottom: 0.3em;
+  border-bottom: 2px solid #333;  /* underline for title */
+  font-size: 1.2em;
+}
+
+.about-bullets {
+  list-style-position: inside;
+  padding-left: 0;
+  text-align: center;
+  margin: 1em auto 0 auto;
+}
+.about-bullets li {
+  display: list-item;
+  margin: 0.3em 0;
+}
+</style>

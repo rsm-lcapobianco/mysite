@@ -9,11 +9,13 @@ website:
       - href: index.qmd
         text: Home
       - href: projects.qmd
-        text: Homework
-      - text: Personnel Project
-        menu:
-        - href: Personnel/Reddit_Sentiment/Reddit_Scrape.ipynb
-          text: Sentiment Analsyis
+        text: Projects
+      - href: Resume.qmd
+        text: Resume
+      # - text: Personnel Project
+      #   menu:
+      #   - href: Personnel/Reddit_Sentiment/Reddit_Scrape.ipynb
+      #     text: Sentiment Analsyis
 
 format:
   html:
